@@ -13,6 +13,8 @@ class CreateTagTaskTable extends Migration
     public function up()
     {
         Schema::create('tag_task', function (Blueprint $table) {
+            $table->integer('tag_id')->unsigned()->index();
+            $table->integer('task_id')->unsigned()->index();
             $table->increments('id');
             $table->timestamps();
         });
