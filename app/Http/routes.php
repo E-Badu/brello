@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('task', 'TasksController', [
+	'except'=>['create', 'edit']
+	]);
+
+Route::resource('lane', 'LanesController', [
+	'except'=>['create', 'edit']
+	]);
+
+Route::resource('tag', 'TagsController', [
+	'except'=>['create', 'edit']
+	]);
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
