@@ -16,17 +16,10 @@ class LanesController extends Controller
     public function index()
     {
         //
+        return \App\Lane::all($id);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -37,6 +30,11 @@ class LanesController extends Controller
     public function store(Request $request)
     {
         //
+        $lane = new \App\Lane;
+        $lane->name = $request->name;
+        $lane->save();
+
+        return $lane;
     }
 
     /**
@@ -48,18 +46,10 @@ class LanesController extends Controller
     public function show($id)
     {
         //
+        return \App\Lane::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -71,6 +61,11 @@ class LanesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $lane = \App\Lane::find($id);
+        $lane->name = $request->name;
+        $lane->save();
+
+        return $lane;
     }
 
     /**
@@ -82,5 +77,9 @@ class LanesController extends Controller
     public function destroy($id)
     {
         //
+        $lane = \App\Lane::find($id);
+        $lane->delete();
+
+        return $lane;
     }
 }

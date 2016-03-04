@@ -16,17 +16,10 @@ class TasksController extends Controller
     public function index()
     {
         //
+        return \App\Task::all($id);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -37,6 +30,12 @@ class TasksController extends Controller
     public function store(Request $request)
     {
         //
+        $task = new \App\Task;
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->save();
+
+        return $task;
     }
 
     /**
@@ -48,18 +47,10 @@ class TasksController extends Controller
     public function show($id)
     {
         //
+        return \App\Task::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -71,6 +62,12 @@ class TasksController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $task = \App\Task::find($id);
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->save();
+
+        return $task;
     }
 
     /**
@@ -82,5 +79,9 @@ class TasksController extends Controller
     public function destroy($id)
     {
         //
+        $task = \App\Task::find($id);
+        $task->delete();
+
+        return $task;
     }
 }
